@@ -1,26 +1,21 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import firebase from "firebase/app";
+import "firebase/firestore";
+import config from "../config/firebase-config";
+import Header from "./Header";
 
 class App extends Component {
+  constructor() {
+    super();
+
+    // initialize firebase
+    firebase.initializeApp(config);
+    firebase.firestore().settings({ timestampsInSnapshots: true });
+  }
+    
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Header />
     );
   }
 }
