@@ -1,21 +1,28 @@
 import React, { Component } from 'react';
-import firebase from "firebase/app";
-import "firebase/firestore";
-import config from "../config/firebase-config";
-import Header from "./Header";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import firebase from 'firebase/app';
+import config from '../config/firebase-config';
+import Header from './Header';
+import VideoUpload from './VideoUpload';
 
 class App extends Component {
   constructor() {
     super();
 
-    // initialize firebase
+    // Initialize Firebase
     firebase.initializeApp(config);
-    firebase.firestore().settings({ timestampsInSnapshots: true });
   }
-    
+
   render() {
     return (
-      <Header />
+      <Router>
+        <div className="App">
+          <Header />
+          <Switch>
+            <Route path="/upload" component={VideoUpload} />
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }
