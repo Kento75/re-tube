@@ -1,8 +1,0 @@
-export default {
-  apiKey: "api_key",
-  authDomain: "projectのURL",
-  databaseURL: "xxx",
-  projectId: "xxx",
-  storageBucket: "xxx",
-  messagingSenderId: "xxx"
-};

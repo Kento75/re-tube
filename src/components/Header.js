@@ -93,7 +93,7 @@ class Header extends Component {
         <AppBar position="static" color="primary">
           <Toolbar>
             <Typography variant="title" color="inherit" className={classes.flex}>
-              <Link to="/" className={classes.link}>Firebase Videos</Link>
+              <Link to="/" className={classes.link}>Re-Tube</Link>
             </Typography>
             {this.state.isLogin ? this.renderLoginedComponent(classes) : this.renderLoginComponent(classes)}
           </Toolbar>
