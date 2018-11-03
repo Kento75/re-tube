@@ -4,6 +4,7 @@ import firebase from 'firebase/app';
 import config from '../config/firebase-config';
 import Header from './Header';
 import VideoUpload from './VideoUpload';
+import VideoFeed from "./VideoFeed";
 
 class App extends Component {
   constructor() {
@@ -19,6 +20,7 @@ class App extends Component {
         <div className="App">
           <Header />
           <Switch>
+            <Route path="/" component={VideoFeed} />
             <Route path="/upload" component={VideoUpload} />
           </Switch>
         </div>
