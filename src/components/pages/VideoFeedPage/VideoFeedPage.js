@@ -12,7 +12,7 @@ const styles = theme => ({
   },
 });
 
-class VideoFeed extends Component {
+class VideoFeedPage extends Component {
   constructor(props) {
     super(props);
 
@@ -59,8 +59,8 @@ class VideoFeed extends Component {
   }
 }
 
-VideoFeed.propTypes = {
+VideoFeedPage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(VideoFeed);
+export default withStyles(styles)(VideoFeedPage);

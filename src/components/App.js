@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import config from '../config/firebase-config';
-import Header from './Header';
-import VideoUpload from './VideoUpload';
-import VideoFeed from './VideoFeed';
+import Header from './Header/Header';
+import VideoUploadPage from './pages/VideoUploadPage/VideoUploadPage';
+import VideoFeedPage from './pages/VideoFeedPage/VideoFeedPage';
 
 class App extends Component {
   constructor() {
@@ -22,8 +22,8 @@ class App extends Component {
         <div className="App">
           <Header />
           <Switch>
-            <Route exact path="/" component={VideoFeed} />
-            <Route path="/upload" component={VideoUpload} />
+            <Route exact path="/" component={VideoFeedPage} />
+            <Route path="/upload" component={VideoUploadPage} />
           </Switch>
         </div>
       </Router>

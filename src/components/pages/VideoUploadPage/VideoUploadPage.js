@@ -4,11 +4,14 @@ import firebase from 'firebase/app';
 import 'firebase/storage';
 import 'firebase/firestore';
 import _ from 'lodash';
+import Button from '@material-ui/core/Button';
 
-class Upload extends Component {
+import ResultDialog from '../../Dialog/ResultDialog';
+
+class UploadPage extends Component {
   constructor(props) {
     super(props);
-    this.state = { video: null, loading: false }
+    this.state = { video: null, loading: false, open: false, message: '' }
   }
 
   handleChange = event => {
@@ -25,6 +28,11 @@ class Upload extends Component {
     this.fileUpload(this.state.video);
   }
 
+  handleCloseDialog = () => {
+    this.setState({ open: false, message: '' });
+  }
+
+  // ファイルアップロード
   async fileUpload(video) {
     try {
       const filePath = `videos/${firebase.auth().currentUser.uid}/${video.name}`;
@@ -44,12 +52,11 @@ class Upload extends Component {
       if (fileSnapshot.state === 'success') {
         console.log(fileSnapshot);
 
-        this.setState({ video: null, loading: false });
+        this.setState({ video: null, loading: false, open: true, message: 'ファイルのアップロードに成功しました。' });
       } else {
         console.log(fileSnapshot);
 
-        this.setState({ video: null, loading: false });
-        alert('ファイルのアップロードに失敗しました！');
+        this.setState({ video: null, loading: false, open: true, message: 'ファイルのアップロードに失敗しました。' });
       }
     } catch(error) {
       console.log(error);
@@ -65,10 +72,13 @@ class Upload extends Component {
 
   render() {
     return (
+      <>
+      <ResultDialog open={this.state.open} message={this.state.message} handleCloseDialog={this.handleCloseDialog} />
       <LoadingOverlay
         active={this.state.loading}
         spinner
         text='Loading your content...'
+        style={{height: "100vh"}}
       >
         <form onSubmit={e => this.handleSubmit(e)}>
           <h2>Video Upload</h2>
@@ -77,11 +87,14 @@ class Upload extends Component {
             accept="video/*"
             onChange={e => this.handleChange(e)}
           />
-          <button type="submit">Upload Video</button>
+          <Button type="submit" disabled={this.state.video === null ? true : false} variant="contained" color="primary" autoFocus>
+            Upload Video
+          </Button>
         </form>
       </LoadingOverlay>
+      </>
     );
   }
 }
 
-export default Upload;
+export default UploadPage;
